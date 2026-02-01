@@ -31,6 +31,10 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--darker);
@@ -39,6 +43,7 @@
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
+            font-size: 16px;
         }
         
         body::before {
@@ -67,7 +72,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-bottom: 1px solid var(--gray-dark);
         }
         
@@ -107,7 +112,7 @@
         
         .trust-badges {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         
@@ -115,12 +120,13 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 50px;
-            padding: 8px 18px;
+            padding: 8px 15px;
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
             font-weight: 500;
+            white-space: nowrap;
         }
         
         .badge i {
@@ -134,8 +140,8 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 50px 0;
-            margin-bottom: 40px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
             border-radius: 20px;
             border: 1px solid var(--card-border);
@@ -159,36 +165,38 @@
         
         .hero h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: linear-gradient(to right, var(--secondary), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto 30px;
+            line-height: 1.2;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
         
         .stats {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
         
         .stat-item {
             text-align: center;
+            min-width: 120px;
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--secondary);
+            line-height: 1;
         }
         
         .stat-label {
@@ -197,32 +205,46 @@
             margin-top: 5px;
         }
         
-        /* Download Cards */
+        /* Download Cards - Made more prominent */
         .download-section {
             margin-bottom: 50px;
+            padding-top: 20px;
         }
         
         .section-title {
             font-family: 'Poppins', sans-serif;
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
         
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
             height: 4px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 2px;
+        }
+        
+        .download-intro {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         .platforms-grid {
@@ -234,19 +256,28 @@
         
         .platform-card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            border: 2px solid var(--card-border);
             border-radius: 20px;
-            padding: 35px 30px;
+            padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 420px;
         }
         
         .platform-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(109, 40, 217, 0.2);
+            box-shadow: 0 15px 30px rgba(109, 40, 217, 0.3);
+        }
+        
+        .platform-card.featured {
+            border-color: var(--secondary);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
         }
         
         .platform-card.featured::before {
@@ -266,6 +297,7 @@
         .platform-icon {
             font-size: 3.5rem;
             margin-bottom: 20px;
+            flex-shrink: 0;
         }
         
         .windows-icon { color: #0078d7; }
@@ -276,13 +308,17 @@
             font-size: 1.8rem;
             margin-bottom: 10px;
             color: var(--light);
+            flex-shrink: 0;
+            text-align: center;
         }
         
         .platform-desc {
             color: var(--gray);
             margin-bottom: 25px;
-            font-size: 0.95rem;
-            min-height: 60px;
+            font-size: 1rem;
+            line-height: 1.5;
+            flex-grow: 1;
+            text-align: center;
         }
         
         .download-btn {
@@ -290,14 +326,19 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-decoration: none;
-            padding: 16px 30px;
+            padding: 18px 20px;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s;
             margin-bottom: 15px;
             position: relative;
             overflow: hidden;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
         }
         
         .download-btn::after {
@@ -315,7 +356,7 @@
         .download-btn:hover {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.4);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);
         }
         
         .download-btn:hover::after {
@@ -329,6 +370,8 @@
             margin-top: 10px;
             font-size: 0.85rem;
             color: var(--gray);
+            flex-wrap: wrap;
+            flex-shrink: 0;
         }
         
         .info-item {
@@ -352,7 +395,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             transition: all 0.3s;
         }
         
@@ -363,26 +406,29 @@
         
         .feature-icon {
             background: linear-gradient(135deg, rgba(109, 40, 217, 0.2), rgba(16, 185, 129, 0.2));
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--accent);
         }
         
         .feature-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
             color: var(--light);
+            text-align: center;
         }
         
         .feature-card p {
             color: var(--gray);
             font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
         }
         
         /* Steps */
@@ -412,7 +458,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             width: 30%;
             text-align: center;
             position: relative;
@@ -440,14 +486,17 @@
         }
         
         .step h4 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
             color: var(--light);
+            text-align: center;
         }
         
         .step p {
             color: var(--gray);
             font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: center;
         }
         
         /* Testimonials */
@@ -465,7 +514,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             position: relative;
         }
         
@@ -474,7 +523,7 @@
             position: absolute;
             top: 10px;
             left: 15px;
-            font-size: 4rem;
+            font-size: 3rem;
             color: var(--primary);
             opacity: 0.2;
             font-family: serif;
@@ -484,8 +533,9 @@
             font-style: italic;
             margin-bottom: 20px;
             color: var(--light);
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: center;
         }
         
         .testimonial-author {
@@ -495,8 +545,8 @@
         }
         
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
@@ -504,23 +554,26 @@
             justify-content: center;
             color: white;
             font-weight: 700;
+            flex-shrink: 0;
         }
         
         .author-info h5 {
             color: var(--light);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            text-align: center;
         }
         
         .author-info p {
             color: var(--gray);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            text-align: center;
         }
         
         /* Security & Trust */
         .security-section {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
             border-radius: 20px;
-            padding: 40px;
+            padding: 35px;
             margin-bottom: 50px;
             border: 1px solid var(--card-border);
         }
@@ -538,26 +591,139 @@
         }
         
         .security-icon {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .security-item h5 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            margin-bottom: 8px;
             color: var(--light);
+            text-align: center;
         }
         
         .security-item p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        /* Floating Download Button */
+        .floating-download {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+            border: none;
+            cursor: pointer;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 30px rgba(109, 40, 217, 0.4); }
+            50% { box-shadow: 0 10px 40px rgba(109, 40, 217, 0.7); }
+            100% { box-shadow: 0 10px 30px rgba(109, 40, 217, 0.4); }
+        }
+        
+        .floating-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(109, 40, 217, 0.6);
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: var(--card-bg);
+            color: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s;
+            display: none;
+        }
+        
+        .scroll-top:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid var(--card-border);
+        }
+        
+        .final-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .final-cta p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .final-cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .final-cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
             border-top: 1px solid var(--gray-dark);
             color: var(--gray);
             font-size: 0.9rem;
@@ -566,14 +732,16 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
             color: var(--gray);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 0.9rem;
         }
         
         .footer-links a:hover {
@@ -582,9 +750,24 @@
         
         .copyright {
             margin-top: 20px;
+            line-height: 1.5;
         }
         
         /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .platforms-grid, .features-grid, .testimonials-grid {
+                gap: 20px;
+            }
+        }
+        
         @media (max-width: 1024px) {
             .platforms-grid, .features-grid, .testimonials-grid, .security-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -601,6 +784,10 @@
             
             .step {
                 width: 100%;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
             }
         }
         
@@ -620,18 +807,75 @@
             }
             
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .stats {
-                flex-wrap: wrap;
-                gap: 20px;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .platform-card {
+                min-height: auto;
+                padding: 25px;
             }
             
             .hero::before {
                 font-size: 0.7rem;
                 padding: 6px 50px;
                 right: -50px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .floating-download {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .scroll-top {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .platform-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .download-btn {
+                padding: 16px;
+                font-size: 1rem;
+            }
+            
+            .footer-links {
+                gap: 15px;
             }
         }
         
@@ -648,6 +892,12 @@
         .delay-1 { animation-delay: 0.2s; opacity: 0; }
         .delay-2 { animation-delay: 0.4s; opacity: 0; }
         .delay-3 { animation-delay: 0.6s; opacity: 0; }
+        
+        /* High Contrast for Download Buttons */
+        .download-btn-contrast {
+            background: linear-gradient(135deg, #ff6b35, #ff3366) !important;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -660,7 +910,7 @@
                 </div>
                 <div class="logo-text">
                     <h1>Blooket Hacks 2026</h1>
-                    <p>Official & Verified Source • Updated Daily</p>
+                    <p>Official & Verified Source • Updated Now</p>
                 </div>
             </div>
             <div class="trust-badges">
@@ -682,7 +932,6 @@
         <!-- Hero Section -->
         <section class="hero fade-in">
             <h2>Dominate Blooket Like Never Before 🚀</h2>
-            <p class="hero-subtitle">Tired of endless grinding? Get every Blook, unlimited coins, and dominate every game in seconds with our official, safe, and undetectable hack tool.</p>
             
             <div class="stats">
                 <div class="stat-item">
@@ -697,18 +946,14 @@
                     <div class="stat-number">100%</div>
                     <div class="stat-label">Success Rate</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">Bans Reported</div>
-                </div>
             </div>
         </section>
         
         <!-- Download Section -->
-        <section class="download-section">
+        <section class="download-section" id="download">
             <h2 class="section-title fade-in">Download Official Blooket Hack 2026</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;" class="fade-in delay-1">
-                Choose your platform below. All downloads are verified safe, include automatic updates, and come with 24/7 support.
+            <p class="download-intro fade-in delay-1">
+                Choose your platform below. No registration required - download and start hacking instantly!
             </p>
             
             <div class="platforms-grid">
@@ -718,9 +963,9 @@
                         <i class="fab fa-windows"></i>
                     </div>
                     <h3>Windows</h3>
-                    <p class="platform-desc">Full installer with auto-update feature. Compatible with Windows 10/11 (32-bit & 64-bit).</p>
-                    <a href="https://yuishare.com/x/OBIBGID?title=Blooket&tracker=blooketWin" class="download-btn" target="_blank" rel="noopener">
-                        <i class="fas fa-download"></i> Download for Windows
+                    <p class="platform-desc">Full installer with auto-update feature. Compatible with Windows 10/11 (32-bit & 64-bit). One-click setup.</p>
+                    <a href="https://yuishare.com/x/OBIBGID?title=Blooket&tracker=blooketWin" class="download-btn download-btn-contrast" target="_blank" rel="noopener">
+                        <i class="fas fa-download"></i> DOWNLOAD FOR WINDOWS
                     </a>
                     <div class="download-info">
                         <div class="info-item">
@@ -734,15 +979,15 @@
                     </div>
                 </div>
                 
-                <!-- macOS Card -->
+                <!-- MacOS Card -->
                 <div class="platform-card fade-in delay-2">
                     <div class="platform-icon mac-icon">
                         <i class="fab fa-apple"></i>
                     </div>
-                    <h3>macOS</h3>
-                    <p class="platform-desc">Universal build for Apple Silicon (M1/M2) and Intel Macs. Native macOS application.</p>
-                    <a href="https://igk.filexspace.com/getfile/TGNGLNI?title=Blooket&tracker=blooketMac" class="download-btn" target="_blank" rel="noopener">
-                        <i class="fas fa-download"></i> Download for macOS
+                    <h3>MacOS</h3>
+                    <p class="platform-desc">Universal build for Apple Silicon (M1/M2) and Intel Macs. Native macOS application with auto-updates.</p>
+                    <a href="https://igk.filexspace.com/getfile/TGNGLNI?title=Blooket&tracker=blooketMac" class="download-btn download-btn-contrast" target="_blank" rel="noopener">
+                        <i class="fas fa-download"></i> DOWNLOAD FOR MAC
                     </a>
                     <div class="download-info">
                         <div class="info-item">
@@ -762,9 +1007,9 @@
                         <i class="fab fa-android"></i>
                     </div>
                     <h3>Android</h3>
-                    <p class="platform-desc">APK file compatible with Android 8.0+. No root required. Works with Blooket mobile.</p>
-                    <a href="https://igk.filexspace.com/getfile/OBIBGID?title=Blooket&tracker=blooketApk" class="download-btn" target="_blank" rel="noopener">
-                        <i class="fas fa-download"></i> Download for Android
+                    <p class="platform-desc">APK file compatible with Android 8.0+. No root required. Works with Blooket mobile app.</p>
+                    <a href="https://igk.filexspace.com/getfile/OBIBGID?title=Blooket&tracker=blooketApk" class="download-btn download-btn-contrast" target="_blank" rel="noopener">
+                        <i class="fas fa-download"></i> DOWNLOAD FOR ANDROID
                     </a>
                     <div class="download-info">
                         <div class="info-item">
@@ -777,6 +1022,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px; color: var(--accent); font-weight: 500;" class="fade-in">
+                <i class="fas fa-exclamation-circle"></i> All downloads are 100% safe and scanned for viruses
             </div>
         </section>
         
@@ -811,10 +1060,10 @@
                 
                 <div class="feature-card fade-in delay-1">
                     <div class="feature-icon">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <i class="fas fa-coins"></i>
                     </div>
-                    <h4>Speed & God Mode</h4>
-                    <p>Control the game with super speed and invincibility. Become unstoppable in any game mode.</p>
+                    <h4>Infinite Coins</h4>
+                    <p>Get unlimited coins to buy any Blook or item you want. Never run out of coins again!</p>
                 </div>
                 
                 <div class="feature-card fade-in delay-2">
@@ -842,20 +1091,20 @@
             <div class="steps-container">
                 <div class="step fade-in delay-1">
                     <div class="step-number">1</div>
-                    <h4>Download</h4>
-                    <p>Click the download button for your platform. The file is verified safe and includes everything needed.</p>
+                    <h4>Download & Install Opera</h4>
+                    <p>Download the cheat from above; you will be redirected to the next installation page where you must install the Opera browser.</p>
                 </div>
                 
                 <div class="step fade-in delay-2">
                     <div class="step-number">2</div>
-                    <h4>Install & Run</h4>
-                    <p>Run the installer and follow the simple setup. No technical skills required - it's completely automated.</p>
+                    <h4>Complete Installation</h4>
+                    <p>Open the Opera setup file, run it, and accept the Terms & Conditions. Complete the Opera installation.</p>
                 </div>
                 
                 <div class="step fade-in delay-3">
                     <div class="step-number">3</div>
-                    <h4>Activate & Dominate</h4>
-                    <p>Launch the included browser, go to Blooket, press F11 to open the hack panel, and enable features.</p>
+                    <h4>Activate Hack</h4>
+                    <p>Launch the file, then click Add in the browser. Start the game and press F11 to open the Hack Menu.</p>
                 </div>
             </div>
         </section>
@@ -902,7 +1151,7 @@
         
         <!-- Security & Trust -->
         <section class="security-section fade-in">
-            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px;">🛡️ Why We're The Most Trusted Source</h2>
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; width: 100%;">🛡️ Why We're The Most Trusted Source</h2>
             
             <div class="security-grid">
                 <div class="security-item">
@@ -940,13 +1189,13 @@
         </section>
         
         <!-- Final CTA -->
-        <div style="text-align: center; padding: 50px 0;" class="fade-in">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--light);">Ready to Dominate Blooket?</h2>
-            <p style="color: var(--gray); margin-bottom: 30px; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Join 500,000+ players who are already dominating every game. Download now and get everything for free.
+        <div class="final-cta fade-in">
+            <h2>Ready to Dominate Blooket?</h2>
+            <p>
+                Join 500,000+ players who are already dominating every game. Download now and get everything for free. No surveys, no registration, no hidden fees.
             </p>
-            <a href="#download" style="display: inline-block; background: linear-gradient(135deg, var(--secondary), var(--primary-dark)); color: white; text-decoration: none; padding: 18px 40px; border-radius: 12px; font-weight: 700; font-size: 1.2rem; transition: all 0.3s;">
-                <i class="fas fa-rocket"></i> Download Blooket Hack 2026
+            <a href="#download" class="final-cta-btn">
+                <i class="fas fa-rocket"></i> DOWNLOAD BLOOKET HACK 2026
             </a>
         </div>
         
@@ -960,15 +1209,24 @@
                 <a href="#">Contact</a>
             </div>
             <div class="copyright">
-                <p>© 2026 Blooket Hacks Official. This tool is not affiliated with, endorsed, or sponsored by Blooket. All game content is property of their respective owners.</p>
-                <p style="margin-top: 10px;">For educational purposes only. Use at your own risk.</p>
+                <p>Blooket Hacks 2026</p>
             </div>
         </footer>
     </div>
 
+    <!-- Floating Download Button -->
+    <a href="#download" class="floating-download" id="floatingDownload">
+        <i class="fas fa-download"></i> DOWNLOAD
+    </a>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script>
-        // Add animations on scroll
         document.addEventListener('DOMContentLoaded', function() {
+            // Add animations on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
             
             const fadeObserver = new IntersectionObserver((entries) => {
@@ -984,14 +1242,53 @@
                 fadeObserver.observe(el);
             });
             
-            // Add download tracking
-            document.querySelectorAll('.download-btn').forEach(btn => {
+            // Floating download button logic
+            const floatingDownloadBtn = document.getElementById('floatingDownload');
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                // Show/hide floating download button
+                if (window.scrollY > 300) {
+                    floatingDownloadBtn.style.display = 'flex';
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    floatingDownloadBtn.style.display = 'none';
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+            
+            // Scroll to top functionality
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Floating download button click
+            floatingDownloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#download').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            // Download tracking
+            document.querySelectorAll('.download-btn, .final-cta-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
-                    const platform = this.closest('.platform-card').querySelector('h3').textContent;
-                    console.log(`Download started for ${platform}`);
+                    // Check if it's a hash link
+                    if (this.getAttribute('href') === '#download') {
+                        e.preventDefault();
+                        document.querySelector('#download').scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        return;
+                    }
                     
-                    // In production, send to analytics
-                    // gtag('event', 'download', { platform: platform });
+                    const platform = this.closest('.platform-card') ? 
+                        this.closest('.platform-card').querySelector('h3').textContent : 
+                        'Unknown Platform';
+                    
+                    console.log(`Download started for ${platform}`);
                     
                     // Show success message
                     setTimeout(() => {
@@ -1002,8 +1299,10 @@
             
             // Add real-time visitor count
             function updateVisitorCount() {
-                const visitorCount = Math.floor(Math.random() * 500) + 450000;
-                document.querySelector('.stat-number').textContent = visitorCount.toLocaleString() + '+';
+                const baseCount = 500000;
+                const randomIncrement = Math.floor(Math.random() * 500);
+                const visitorCount = baseCount + randomIncrement;
+                document.querySelectorAll('.stat-number')[0].textContent = visitorCount.toLocaleString() + '+';
             }
             
             updateVisitorCount();
@@ -1013,6 +1312,19 @@
             const now = new Date();
             const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             document.querySelector('.updated span').textContent = `Updated: ${timeString}`;
+            
+            // Ensure download section is visible on page load
+            window.addEventListener('load', function() {
+                // If there's a hash in URL, scroll to download section
+                if (window.location.hash === '#download') {
+                    setTimeout(() => {
+                        document.querySelector('#download').scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            });
         });
     </script>
 </body>
